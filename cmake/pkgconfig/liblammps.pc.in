@@ -19,8 +19,8 @@
 # myapp_LDADD = $(LAMMPS_LIBS)
 
 prefix=@CMAKE_INSTALL_PREFIX@
-libdir=@CMAKE_INSTALL_FULL_LIBDIR@
-includedir=@CMAKE_INSTALL_FULL_INCLUDEDIR@
+libdir=@CMAKE_INSTALL_PREFIX@/build
+includedir=@CMAKE_INSTALL_PREFIX@/src
 
 Name: liblammps@LAMMPS_MACHINE@
 Description: Large-scale Atomic/Molecular Massively Parallel Simulator Library

@@ -27,8 +27,10 @@
 #include "comm.h"
 #include "memory.h"
 #include "error.h"
+#include <iostream>
 
 using namespace LAMMPS_NS;
+using namespace std;
 
 ComputeSNAAtom::ComputeSNAAtom(LAMMPS *lmp, int narg, char **arg) :
   Compute(lmp, narg, arg), cutsq(nullptr), list(nullptr), sna(nullptr),
@@ -79,9 +81,12 @@ ComputeSNAAtom::ComputeSNAAtom(LAMMPS *lmp, int narg, char **arg) :
     cut = 2.0*radelem[i]*rcutfac;
     if (cut > cutmax) cutmax = cut;
     cutsq[i][i] = cut*cut;
+    std::cout << i << "," << i << " " << cutsq[i][i] <<std::endl;
     for (int j = i+1; j <= ntypes; j++) {
       cut = (radelem[i]+radelem[j])*rcutfac;
       cutsq[i][j] = cutsq[j][i] = cut*cut;
+      std::cout << i << "," << j << " " << cutsq[i][i] <<std::endl;
+
     }
   }
 
@@ -312,4 +317,3 @@ double ComputeSNAAtom::memory_usage()
 
   return bytes;
 }
-

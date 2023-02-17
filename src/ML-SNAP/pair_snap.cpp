@@ -27,8 +27,10 @@
 
 #include <cmath>
 #include <cstring>
+#include <iostream>
 
 using namespace LAMMPS_NS;
+using namespace std;
 
 #define MAXLINE 1024
 #define MAXWORD 3
@@ -37,6 +39,7 @@ using namespace LAMMPS_NS;
 
 PairSNAP::PairSNAP(LAMMPS *lmp) : Pair(lmp)
 {
+  // std::cout << "ENTERING PairSNAP" <<"\n";
   single_enable = 0;
   restartinfo = 0;
   one_coeff = 1;
@@ -82,6 +85,8 @@ PairSNAP::~PairSNAP()
 
 void PairSNAP::compute(int eflag, int vflag)
 {
+
+  // std::cout << "ENTERING PairSNAPcompute" <<"/n";
   int i,j,jnum,ninside;
   double delx,dely,delz,evdwl,rsq;
   double fij[3];
@@ -109,7 +114,8 @@ void PairSNAP::compute(int eflag, int vflag)
 
   numneigh = list->numneigh;
   firstneigh = list->firstneigh;
-
+  // std::cout << "numneigh is :" << *numneigh << "\n";
+  // std::cout << "firstneigh is :" << *firstneigh << "\n";
   for (int ii = 0; ii < list->inum; ii++) {
     i = list->ilist[ii];
 
@@ -121,9 +127,10 @@ void PairSNAP::compute(int eflag, int vflag)
     const double radi = radelem[ielem];
 
     jlist = firstneigh[i];
+    // std::cout << "jlist is " << *jlist << "\n";
     jnum = numneigh[i];
 
-    // insure rij, inside, wj, and rcutij are of size jnum
+    // ensure rij, inside, wj, and rcutij are of size jnum
 
     snaptr->grow_rij(jnum);
 
@@ -134,6 +141,7 @@ void PairSNAP::compute(int eflag, int vflag)
     // note Rij sign convention => dU/dRij = dU/dRj = -dU/dRi
 
     ninside = 0;
+    // std::cout << "wj values begin: " << std::endl;
     for (int jj = 0; jj < jnum; jj++) {
       j = jlist[jj];
       j &= NEIGHMASK;
@@ -145,24 +153,39 @@ void PairSNAP::compute(int eflag, int vflag)
       int jelem = map[jtype];
 
       if (rsq < cutsq[itype][jtype]&&rsq>1e-20) {
+        // std::cout <<"delz "<< delz <<std::endl;
         snaptr->rij[ninside][0] = delx;
         snaptr->rij[ninside][1] = dely;
         snaptr->rij[ninside][2] = delz;
         snaptr->inside[ninside] = j;
         snaptr->wj[ninside] = wjelem[jelem];
+        // std::cout << snaptr->wj[ninside] << "  "
         snaptr->rcutij[ninside] = (radi + radelem[jelem])*rcutfac;
         snaptr->element[ninside] = jelem;
         ninside++;
       }
+      // std::cout << "wj values end: " << std::endl;
+
     }
 
     // compute Ui, Yi for atom I
 
-    if (chemflag)
+    if (chemflag){
+      std::cout << "calling from compute" << std::endl;
+      // std::cout << "chemflag is trueeee" <<std::endl;
       snaptr->compute_ui(ninside, ielem);
-    else
+      }
+    else{
+      std::cout << "calling from compute" << std::endl;
+      std::cout << "the atom being treated is "<<ii << " which has the symbol " << ielem << itype<<std::endl;
       snaptr->compute_ui(ninside, 0);
+    }
+    //TODO: we should be checking ui of a certain atom from here.
 
+    // std::cout << "ulistot_i is for atom  " <<ii << " is:"<<std::endl;
+    // for (int i = 0; i < snaptr->idxu_max*snaptr->nelements; ++i){
+    //   std::cout << snaptr->ulisttot_i[i] << " " ;
+    // }
     // for neighbors of I within cutoff:
     // compute Fij = dEi/dRj = -dEi/dRi
     // add to Fi, subtract from Fj
@@ -204,6 +227,10 @@ void PairSNAP::compute(int eflag, int vflag)
       // evdwl = energy of atom I, sum over coeffs_k * Bi_k
 
       double* coeffi = coeffelem[ielem];
+      std::cout << "coeff i " ;
+      for (int i =0;i<ncoeff;i++){
+        std::cout << coeffi[i] << " " <<std::endl;
+      }
       evdwl = coeffi[0];
       // snaptr->copy_bi2bvec();
 
@@ -211,12 +238,15 @@ void PairSNAP::compute(int eflag, int vflag)
 
       // linear contributions
 
-      for (int icoeff = 0; icoeff < ncoeff; icoeff++)
+      for (int icoeff = 0; icoeff < ncoeff; icoeff++){
+        // std::cout << "each term "<< coeffi[icoeff+1] << " " << bispectrum[ii][icoeff] <<std::endl;
+        // std::cout << "icoeff " <<icoeff<< " term " << coeffi[icoeff+1]*bispectrum[ii][icoeff]<<std::endl;
         evdwl += coeffi[icoeff+1]*bispectrum[ii][icoeff];
-
+      }
       // quadratic contributions
 
       if (quadraticflag) {
+        std::cout << "we are here in quadratic" <<std::endl;
         int k = ncoeff+1;
         for (int icoeff = 0; icoeff < ncoeff; icoeff++) {
           double bveci = bispectrum[ii][icoeff];
@@ -228,11 +258,11 @@ void PairSNAP::compute(int eflag, int vflag)
         }
       }
       evdwl *= scale[itype][itype];
+      std::cout << "evdwl  is " << evdwl << std::endl;
       ev_tally_full(i,2.0*evdwl,0.0,0.0,0.0,0.0,0.0);
     }
 
   }
-
   if (vflag_fdotr) virial_fdotr_compute();
 }
 
@@ -296,6 +326,8 @@ void PairSNAP::compute_bispectrum()
 
     jlist = list->firstneigh[i];
     jnum = list->numneigh[i];
+    std::cout <<"jnum " << jnum << std::endl;
+    std::cout <<"numneigh " << list->numneigh << std::endl;
 
     // insure rij, inside, wj, and rcutij are of size jnum
 
@@ -309,6 +341,7 @@ void PairSNAP::compute_bispectrum()
 
     ninside = 0;
     for (int jj = 0; jj < jnum; jj++) {
+      // std::cout << "ninside is " << ninside << std::endl;
       j = jlist[jj];
       j &= NEIGHMASK;
       delx = x[j][0] - xtmp;
@@ -317,8 +350,8 @@ void PairSNAP::compute_bispectrum()
       rsq = delx*delx + dely*dely + delz*delz;
       int jtype = type[j];
       int jelem = map[jtype];
-
       if (rsq < cutsq[itype][jtype]&&rsq>1e-20) {
+        // std::cout << "we made it here since rsq " << rsq <<"is less than " << cutsq[itype][jtype]<< std::endl;
         snaptr->rij[ninside][0] = delx;
         snaptr->rij[ninside][1] = dely;
         snaptr->rij[ninside][2] = delz;
@@ -329,11 +362,15 @@ void PairSNAP::compute_bispectrum()
         ninside++;
       }
     }
+    // std::cout << "ninside is " << ninside << std::endl;
 
-    if (chemflag)
-      snaptr->compute_ui(ninside, ielem);
-    else
-      snaptr->compute_ui(ninside, 0);
+
+    if (chemflag){
+      // std::cout << "calling from bispectrum" << std::endl;
+      snaptr->compute_ui(ninside, ielem);}
+    else{
+      // std::cout << "calling from bispectrum" << std::endl;
+      snaptr->compute_ui(ninside, 0);}
     snaptr->compute_zi();
     if (chemflag)
       snaptr->compute_bi(ielem);
@@ -342,6 +379,7 @@ void PairSNAP::compute_bispectrum()
 
     for (int icoeff = 0; icoeff < ncoeff; icoeff++) {
       bispectrum[ii][icoeff] = snaptr->blist[icoeff];
+      // std::cout << ii <<" "<< icoeff << " "<< bispectrum[ii][icoeff]<< std::endl;
     }
   }
 
@@ -734,6 +772,22 @@ double PairSNAP::memory_usage()
 void *PairSNAP::extract(const char *str, int &dim)
 {
   dim = 2;
+  // std::cout << rcutmax << std::endl;
   if (strcmp(str,"scale") == 0) return (void *) scale;
+  else if (strcmp(str,"beta") == 0) return  &beta;
+  else if (strcmp(str,"rcutmax") == 0) return  &rcutmax;
+  else if (strcmp(str,"radelem") == 0) return  radelem;
+
+  // snap parameters
+  else if (strcmp(str,"idxu_max") == 0) return  &snaptr->idxu_max;
+  else if (strcmp(str,"nelements") == 0) return  &snaptr->nelements;
+
+  //snap arrays
+  else if (strcmp(str,"ulisttot_r") == 0) return  snaptr->ulisttot_r;
+  else if (strcmp(str,"dulist_r") == 0) return  snaptr->dulist_r;
+  else if (strcmp(str,"blist") == 0) return  snaptr->blist;
+  else if (strcmp(str,"dblist") == 0) return  snaptr->dblist;
   return nullptr;
+
 }
+

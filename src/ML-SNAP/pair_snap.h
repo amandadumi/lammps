@@ -37,7 +37,7 @@ class PairSNAP : public Pair {
   virtual void *extract(const char *, int &);
 
   double rcutfac, quadraticflag;    // declared public to workaround gcc 4.9
-  int ncoeff;                       //  compiler bug, manifest in KOKKOS package
+  int ncoeff;                       // compiler bug, manifest in KOKKOS package
 
  protected:
   int ncoeffq, ncoeffall;

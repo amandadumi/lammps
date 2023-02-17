@@ -1,0 +1,573 @@
+Configuring and building froom inside the build directory.
+Check the results of the CMake configuration to ensure that the preferred
+compilers and libraries have been selected. See README and documentation
+for guidance.
+-- The CXX compiler identification is GNU 11.3.0
+-- Checking whether CXX compiler has -isysroot
+-- Checking whether CXX compiler has -isysroot - yes
+-- Checking whether CXX compiler supports OSX deployment target flag
+-- Checking whether CXX compiler supports OSX deployment target flag - yes
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/local/Cellar/gcc/11.3.0/bin/g++-11 - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Git: /usr/bin/git (found version "2.24.3 (Apple Git-128)") 
+-- Running check for auto-generated files from make-based build system
+-- Found MPI_CXX: /usr/local/Cellar/open-mpi/4.1.4_2/lib/libmpi.dylib (found version "3.1") 
+-- Found MPI: TRUE (found version "3.1")  
+-- Looking for C++ include omp.h
+-- Looking for C++ include omp.h - found
+-- Found OpenMP_CXX: -fopenmp (found version "4.5") 
+-- Found OpenMP: TRUE (found version "4.5")  
+-- Found JPEG: /usr/local/lib/libjpeg.dylib (found version "80") 
+-- Found PNG: /usr/local/lib/libpng.dylib (found version "1.6.38") 
+-- Found ZLIB: /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk/usr/lib/libz.tbd (found version "1.2.11") 
+-- Found GZIP: /usr/bin/gzip  
+-- Could NOT find FFMPEG (missing: FFMPEG_EXECUTABLE) 
+-- Looking for C++ include cmath
+-- Looking for C++ include cmath - found
+-- Generating style headers...
+-- Generating package headers...
+-- Generating lmpinstalledpkgs.h...
+-- Found Python: /Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10 (found version "3.10.0") found components: Interpreter 
+-- Could NOT find ClangFormat (missing: ClangFormat_EXECUTABLE) (Required is at least version "8.0")
+-- The following tools and libraries have been found and configured:
+ * Git
+ * MPI
+ * OpenMP
+ * JPEG
+ * PNG
+ * ZLIB
+ * Python
+
+-- <<< Build configuration >>>
+   Operating System: Darwin  
+   Build type:       RelWithDebInfo
+   Install path:     /Users/aedumi/software/lammps
+   Generator:        Unix Makefiles using /usr/bin/make
+-- Enabled packages: ML-SNAP;MOLECULE
+-- <<< Compilers and Flags: >>>
+-- C++ Compiler:     /usr/local/Cellar/gcc/11.3.0/bin/g++-11
+      Type:          GNU
+      Version:       11.3.0
+      C++ Flags:     -O2 -g -DNDEBUG
+      Defines:       LAMMPS_SMALLBIG;LAMMPS_MEMALIGN=64;LAMMPS_OMP_COMPAT=4;LAMMPS_JPEG;LAMMPS_PNG;LAMMPS_GZIP
+-- <<< Linker flags: >>>
+-- Executable name:  lmp
+-- Shared library flags:    
+-- <<< MPI flags >>>
+-- MPI_defines:      MPICH_SKIP_MPICXX;OMPI_SKIP_MPICXX;_MPICC_H
+-- MPI includes:     /usr/local/Cellar/open-mpi/4.1.4_2/include
+-- MPI libraries:    /usr/local/Cellar/open-mpi/4.1.4_2/lib/libmpi.dylib;
+-- Configuring done
+-- Generating done
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CMAKE_C_COMPILER
+
+
+-- Build files have been written to: /Users/aedumi/software/lammps/build
+[  1%] Generating includes/lammps/variable.h
+[  1%] Built target variable.h
+-- Git Directory: /Users/aedumi/software/lammps/.git
+-- Generating lmpgitversion.h...
+[  1%] Built target gitversion
+[  1%] Generating includes/lammps/angle.h
+[  1%] Built target angle.h
+[  1%] Generating includes/lammps/atom.h
+[  1%] Built target atom.h
+[  1%] Generating includes/lammps/bond.h
+[  1%] Built target bond.h
+[  1%] Generating includes/lammps/citeme.h
+[  1%] Built target citeme.h
+[  1%] Generating includes/lammps/comm.h
+[  1%] Built target comm.h
+[  1%] Generating includes/lammps/compute.h
+[  1%] Built target compute.h
+[  2%] Generating includes/lammps/dihedral.h
+[  2%] Built target dihedral.h
+[  2%] Generating includes/lammps/domain.h
+[  2%] Built target domain.h
+[  2%] Generating includes/lammps/error.h
+[  2%] Built target error.h
+[  2%] Generating includes/lammps/fix.h
+[  2%] Built target fix.h
+[  2%] Generating includes/lammps/force.h
+[  2%] Built target force.h
+[  2%] Generating includes/lammps/group.h
+[  2%] Built target group.h
+[  3%] Generating includes/lammps/improper.h
+[  3%] Built target improper.h
+[  3%] Generating includes/lammps/input.h
+[  3%] Built target input.h
+[  3%] Generating includes/lammps/info.h
+[  3%] Built target info.h
+[  3%] Generating includes/lammps/kspace.h
+[  3%] Built target kspace.h
+[  3%] Generating includes/lammps/lammps.h
+[  3%] Built target lammps.h
+[  4%] Generating includes/lammps/lattice.h
+[  4%] Built target lattice.h
+[  4%] Generating includes/lammps/library.h
+[  4%] Built target library.h
+[  5%] Generating includes/lammps/lmppython.h
+[  5%] Built target lmppython.h
+[  5%] Generating includes/lammps/lmptype.h
+[  5%] Built target lmptype.h
+[  5%] Generating includes/lammps/memory.h
+[  5%] Built target memory.h
+[  5%] Generating includes/lammps/modify.h
+[  5%] Built target modify.h
+[  6%] Generating includes/lammps/neighbor.h
+[  6%] Built target neighbor.h
+[  6%] Generating includes/lammps/neigh_list.h
+[  6%] Built target neigh_list.h
+[  6%] Generating includes/lammps/output.h
+[  6%] Built target output.h
+[  6%] Generating includes/lammps/pair.h
+[  6%] Built target pair.h
+[  6%] Generating includes/lammps/pointers.h
+[  6%] Built target pointers.h
+[  6%] Generating includes/lammps/region.h
+[  6%] Built target region.h
+[  7%] Generating includes/lammps/timer.h
+[  7%] Built target timer.h
+[  7%] Generating includes/lammps/universe.h
+[  7%] Built target universe.h
+[  7%] Generating includes/lammps/update.h
+[  7%] Built target update.h
+[  7%] Generating includes/lammps/utils.h
+[  7%] Built target utils.h
+[  8%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/angle.cpp.o
+[  8%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/angle_deprecated.cpp.o
+[  8%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/angle_hybrid.cpp.o
+[  8%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/angle_zero.cpp.o
+[  8%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/arg_info.cpp.o
+[  9%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/atom.cpp.o
+[  9%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/atom_map.cpp.o
+[  9%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/atom_vec.cpp.o
+[  9%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/atom_vec_atomic.cpp.o
+[ 10%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/atom_vec_body.cpp.o
+[ 10%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/atom_vec_charge.cpp.o
+[ 10%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/atom_vec_ellipsoid.cpp.o
+[ 10%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/atom_vec_hybrid.cpp.o
+[ 10%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/atom_vec_line.cpp.o
+[ 11%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/atom_vec_sphere.cpp.o
+[ 11%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/atom_vec_tri.cpp.o
+[ 11%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/balance.cpp.o
+[ 11%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/body.cpp.o
+[ 11%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/bond.cpp.o
+[ 12%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/bond_deprecated.cpp.o
+[ 12%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/bond_hybrid.cpp.o
+[ 12%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/bond_zero.cpp.o
+[ 12%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/change_box.cpp.o
+[ 13%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/citeme.cpp.o
+[ 13%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/comm.cpp.o
+[ 13%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/comm_brick.cpp.o
+[ 13%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/comm_tiled.cpp.o
+[ 13%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute.cpp.o
+[ 14%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_aggregate_atom.cpp.o
+[ 14%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_angle.cpp.o
+[ 14%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_angle_local.cpp.o
+[ 14%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_angmom_chunk.cpp.o
+[ 14%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_bond.cpp.o
+[ 15%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_bond_local.cpp.o
+[ 15%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_centro_atom.cpp.o
+[ 15%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_centroid_stress_atom.cpp.o
+[ 15%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_chunk_atom.cpp.o
+[ 15%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_chunk_spread_atom.cpp.o
+[ 16%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_cluster_atom.cpp.o
+[ 16%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_cna_atom.cpp.o
+[ 16%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_com.cpp.o
+[ 16%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_com_chunk.cpp.o
+[ 17%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_coord_atom.cpp.o
+[ 17%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_deprecated.cpp.o
+[ 17%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_dihedral.cpp.o
+[ 17%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_dihedral_local.cpp.o
+[ 17%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_dipole.cpp.o
+[ 18%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_dipole_chunk.cpp.o
+[ 18%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_displace_atom.cpp.o
+[ 18%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_erotate_sphere.cpp.o
+[ 18%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_erotate_sphere_atom.cpp.o
+[ 18%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_fragment_atom.cpp.o
+[ 19%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_global_atom.cpp.o
+[ 19%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_group_group.cpp.o
+[ 19%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_gyration.cpp.o
+[ 19%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_gyration_chunk.cpp.o
+[ 20%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_heat_flux.cpp.o
+[ 20%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_improper.cpp.o
+[ 20%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_improper_local.cpp.o
+[ 20%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_inertia_chunk.cpp.o
+[ 20%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_ke.cpp.o
+[ 21%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_ke_atom.cpp.o
+[ 21%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_msd.cpp.o
+[ 21%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_msd_chunk.cpp.o
+[ 21%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_omega_chunk.cpp.o
+[ 21%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_orientorder_atom.cpp.o
+[ 22%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_pair.cpp.o
+[ 22%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_pair_local.cpp.o
+[ 22%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_pe.cpp.o
+[ 22%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_pe_atom.cpp.o
+[ 23%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_pressure.cpp.o
+[ 23%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_property_atom.cpp.o
+[ 23%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_property_chunk.cpp.o
+[ 23%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_property_local.cpp.o
+[ 23%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_rdf.cpp.o
+[ 24%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_reduce.cpp.o
+[ 24%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_reduce_chunk.cpp.o
+[ 24%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_reduce_region.cpp.o
+[ 24%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_slice.cpp.o
+[ 24%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_stress_atom.cpp.o
+[ 25%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_temp.cpp.o
+[ 25%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_temp_chunk.cpp.o
+[ 25%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_temp_com.cpp.o
+[ 25%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_temp_deform.cpp.o
+[ 25%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_temp_partial.cpp.o
+[ 26%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_temp_profile.cpp.o
+[ 26%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_temp_ramp.cpp.o
+[ 26%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_temp_region.cpp.o
+[ 26%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_temp_sphere.cpp.o
+[ 27%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_torque_chunk.cpp.o
+[ 27%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_vacf.cpp.o
+[ 27%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/compute_vcm_chunk.cpp.o
+[ 27%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/create_atoms.cpp.o
+[ 27%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/create_bonds.cpp.o
+[ 28%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/create_box.cpp.o
+[ 28%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/delete_atoms.cpp.o
+[ 28%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/delete_bonds.cpp.o
+[ 28%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/deprecated.cpp.o
+[ 28%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/dihedral.cpp.o
+[ 29%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/dihedral_deprecated.cpp.o
+[ 29%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/dihedral_hybrid.cpp.o
+[ 29%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/dihedral_zero.cpp.o
+[ 29%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/displace_atoms.cpp.o
+[ 30%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/domain.cpp.o
+[ 30%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/dump.cpp.o
+[ 30%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/dump_atom.cpp.o
+[ 30%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/dump_cfg.cpp.o
+[ 30%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/dump_custom.cpp.o
+[ 31%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/dump_deprecated.cpp.o
+[ 31%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/dump_image.cpp.o
+[ 31%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/dump_local.cpp.o
+[ 31%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/dump_movie.cpp.o
+[ 31%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/dump_xyz.cpp.o
+[ 32%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/error.cpp.o
+[ 32%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/finish.cpp.o
+[ 32%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix.cpp.o
+[ 32%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_adapt.cpp.o
+[ 33%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_addforce.cpp.o
+[ 33%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_ave_atom.cpp.o
+[ 33%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_ave_chunk.cpp.o
+[ 33%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_ave_correlate.cpp.o
+[ 33%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_ave_histo.cpp.o
+[ 34%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_ave_histo_weight.cpp.o
+[ 34%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_ave_time.cpp.o
+[ 34%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_aveforce.cpp.o
+[ 34%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_balance.cpp.o
+[ 34%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_box_relax.cpp.o
+[ 35%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_deform.cpp.o
+[ 35%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_deposit.cpp.o
+[ 35%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_deprecated.cpp.o
+[ 35%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_dt_reset.cpp.o
+[ 35%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_dummy.cpp.o
+[ 36%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_efield.cpp.o
+[ 36%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_enforce2d.cpp.o
+[ 36%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_evaporate.cpp.o
+[ 36%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_external.cpp.o
+[ 37%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_gravity.cpp.o
+[ 37%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_group.cpp.o
+[ 37%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_halt.cpp.o
+[ 37%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_heat.cpp.o
+[ 37%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_indent.cpp.o
+[ 38%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_langevin.cpp.o
+[ 38%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_lineforce.cpp.o
+[ 38%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_minimize.cpp.o
+[ 38%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_momentum.cpp.o
+[ 38%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_move.cpp.o
+[ 39%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_neigh_history.cpp.o
+[ 39%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_nh.cpp.o
+[ 39%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_nh_sphere.cpp.o
+[ 39%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_nph.cpp.o
+[ 40%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_nph_sphere.cpp.o
+[ 40%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_npt.cpp.o
+[ 40%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_npt_sphere.cpp.o
+[ 40%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_nve.cpp.o
+[ 40%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_nve_limit.cpp.o
+[ 41%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_nve_noforce.cpp.o
+[ 41%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_nve_sphere.cpp.o
+[ 41%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_nvt.cpp.o
+[ 41%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_nvt_sllod.cpp.o
+[ 41%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_nvt_sphere.cpp.o
+[ 42%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_planeforce.cpp.o
+[ 42%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_press_berendsen.cpp.o
+[ 42%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_print.cpp.o
+[ 42%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_property_atom.cpp.o
+[ 43%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_read_restart.cpp.o
+[ 43%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_recenter.cpp.o
+[ 43%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_respa.cpp.o
+[ 43%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_restrain.cpp.o
+[ 43%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_setforce.cpp.o
+[ 44%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_spring.cpp.o
+[ 44%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_spring_chunk.cpp.o
+[ 44%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_spring_self.cpp.o
+[ 44%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_store.cpp.o
+[ 44%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_store_force.cpp.o
+[ 45%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_store_state.cpp.o
+[ 45%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_temp_berendsen.cpp.o
+[ 45%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_temp_rescale.cpp.o
+[ 45%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_thermal_conductivity.cpp.o
+[ 45%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_vector.cpp.o
+[ 46%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_viscous.cpp.o
+[ 46%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_wall.cpp.o
+[ 46%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_wall_harmonic.cpp.o
+[ 46%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_wall_lj1043.cpp.o
+[ 47%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_wall_lj126.cpp.o
+[ 47%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_wall_lj93.cpp.o
+[ 47%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_wall_morse.cpp.o
+[ 47%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_wall_reflect.cpp.o
+[ 47%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fix_wall_region.cpp.o
+[ 48%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fmtlib_format.cpp.o
+[ 48%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/fmtlib_os.cpp.o
+[ 48%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/force.cpp.o
+[ 48%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/gridcomm.cpp.o
+[ 48%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/group.cpp.o
+[ 50%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/hashlittle.cpp.o
+[ 50%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/image.cpp.o
+[ 50%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/imbalance.cpp.o
+[ 50%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/imbalance_group.cpp.o
+[ 51%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/imbalance_neigh.cpp.o
+[ 51%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/imbalance_store.cpp.o
+[ 51%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/imbalance_time.cpp.o
+[ 51%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/imbalance_var.cpp.o
+[ 51%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/improper.cpp.o
+[ 52%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/improper_deprecated.cpp.o
+[ 52%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/improper_hybrid.cpp.o
+[ 52%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/improper_zero.cpp.o
+[ 52%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/info.cpp.o
+[ 52%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/input.cpp.o
+[ 53%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/integrate.cpp.o
+[ 53%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/irregular.cpp.o
+[ 53%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/kspace.cpp.o
+[ 53%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/kspace_deprecated.cpp.o
+[ 54%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/lammps.cpp.o
+[ 54%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/lattice.cpp.o
+[ 54%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/library.cpp.o
+[ 54%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/lmppython.cpp.o
+[ 54%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/math_eigen.cpp.o
+[ 55%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/math_extra.cpp.o
+[ 55%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/math_special.cpp.o
+[ 55%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/memory.cpp.o
+[ 55%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/min.cpp.o
+[ 55%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/min_cg.cpp.o
+[ 56%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/min_fire.cpp.o
+[ 56%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/min_fire_old.cpp.o
+[ 56%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/min_hftn.cpp.o
+[ 56%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/min_linesearch.cpp.o
+[ 56%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/min_quickmin.cpp.o
+[ 57%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/min_sd.cpp.o
+[ 57%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/minimize.cpp.o
+[ 57%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/modify.cpp.o
+[ 57%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/molecule.cpp.o
+[ 58%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/my_page.cpp.o
+[ 58%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/my_pool_chunk.cpp.o
+[ 58%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nbin.cpp.o
+[ 58%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nbin_multi.cpp.o
+[ 58%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nbin_standard.cpp.o
+[ 59%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/neigh_list.cpp.o
+[ 59%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/neigh_request.cpp.o
+[ 59%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/neighbor.cpp.o
+[ 59%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair.cpp.o
+[ 59%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_copy.cpp.o
+[ 60%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_full_bin.cpp.o
+[ 60%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_full_bin_atomonly.cpp.o
+[ 60%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_full_bin_ghost.cpp.o
+[ 60%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_full_multi.cpp.o
+[ 61%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_full_multi_old.cpp.o
+[ 61%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_full_nsq.cpp.o
+[ 61%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_full_nsq_ghost.cpp.o
+[ 61%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_bin_atomonly_newton.cpp.o
+[ 61%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_bin_newtoff.cpp.o
+[ 62%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_bin_newtoff_ghost.cpp.o
+[ 62%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_bin_newton.cpp.o
+[ 62%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_bin_newton_tri.cpp.o
+[ 62%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_multi_newtoff.cpp.o
+[ 62%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_multi_newton.cpp.o
+[ 63%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_multi_newton_tri.cpp.o
+[ 63%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_multi_old_newtoff.cpp.o
+[ 63%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_multi_old_newton.cpp.o
+[ 63%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_multi_old_newton_tri.cpp.o
+[ 64%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_nsq_newtoff.cpp.o
+[ 64%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_nsq_newtoff_ghost.cpp.o
+[ 64%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_nsq_newton.cpp.o
+[ 64%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_respa_bin_newtoff.cpp.o
+[ 64%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_respa_bin_newton.cpp.o
+[ 65%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_respa_bin_newton_tri.cpp.o
+[ 65%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_respa_nsq_newtoff.cpp.o
+[ 65%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_respa_nsq_newton.cpp.o
+[ 65%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_size_bin_newtoff.cpp.o
+[ 65%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_size_bin_newton.cpp.o
+[ 66%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_size_bin_newton_tri.cpp.o
+[ 66%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_size_multi_newtoff.cpp.o
+[ 66%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_size_multi_newton.cpp.o
+[ 66%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_size_multi_newton_tri.cpp.o
+[ 66%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_size_multi_old_newtoff.cpp.o
+[ 67%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_size_multi_old_newton.cpp.o
+[ 67%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_size_multi_old_newton_tri.cpp.o
+[ 67%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_size_nsq_newtoff.cpp.o
+[ 67%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_half_size_nsq_newton.cpp.o
+[ 68%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_halffull_newtoff.cpp.o
+[ 68%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_halffull_newton.cpp.o
+[ 68%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_skip.cpp.o
+[ 68%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_skip_respa.cpp.o
+[ 68%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_skip_size.cpp.o
+[ 69%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_skip_size_off2on.cpp.o
+[ 69%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/npair_skip_size_off2on_oneside.cpp.o
+[ 69%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nstencil.cpp.o
+[ 69%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nstencil_full_bin_2d.cpp.o
+[ 69%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nstencil_full_bin_3d.cpp.o
+[ 70%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nstencil_full_ghost_bin_2d.cpp.o
+[ 70%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nstencil_full_ghost_bin_3d.cpp.o
+[ 70%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nstencil_full_multi_2d.cpp.o
+[ 70%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nstencil_full_multi_3d.cpp.o
+[ 71%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nstencil_full_multi_old_2d.cpp.o
+[ 71%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nstencil_full_multi_old_3d.cpp.o
+[ 71%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nstencil_half_bin_2d.cpp.o
+[ 71%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nstencil_half_bin_2d_tri.cpp.o
+[ 71%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nstencil_half_bin_3d.cpp.o
+[ 72%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nstencil_half_bin_3d_tri.cpp.o
+[ 72%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nstencil_half_multi_2d.cpp.o
+[ 72%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nstencil_half_multi_2d_tri.cpp.o
+[ 72%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nstencil_half_multi_3d.cpp.o
+[ 72%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nstencil_half_multi_3d_tri.cpp.o
+[ 73%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nstencil_half_multi_old_2d.cpp.o
+[ 73%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nstencil_half_multi_old_2d_tri.cpp.o
+[ 73%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nstencil_half_multi_old_3d.cpp.o
+[ 73%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/nstencil_half_multi_old_3d_tri.cpp.o
+[ 74%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/ntopo.cpp.o
+[ 74%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/ntopo_angle_all.cpp.o
+[ 74%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/ntopo_angle_partial.cpp.o
+[ 74%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/ntopo_angle_template.cpp.o
+[ 74%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/ntopo_bond_all.cpp.o
+[ 75%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/ntopo_bond_partial.cpp.o
+[ 75%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/ntopo_bond_template.cpp.o
+[ 75%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/ntopo_dihedral_all.cpp.o
+[ 75%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/ntopo_dihedral_partial.cpp.o
+[ 75%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/ntopo_dihedral_template.cpp.o
+[ 76%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/ntopo_improper_all.cpp.o
+[ 76%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/ntopo_improper_partial.cpp.o
+[ 76%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/ntopo_improper_template.cpp.o
+[ 76%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/output.cpp.o
+[ 76%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/pair.cpp.o
+[ 77%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/pair_born.cpp.o
+[ 77%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/pair_buck.cpp.o
+[ 77%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/pair_buck_coul_cut.cpp.o
+[ 77%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/pair_coul_cut.cpp.o
+[ 78%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/pair_coul_debye.cpp.o
+[ 78%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/pair_coul_dsf.cpp.o
+[ 78%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/pair_coul_wolf.cpp.o
+[ 78%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/pair_deprecated.cpp.o
+[ 78%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/pair_hybrid.cpp.o
+[ 79%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/pair_hybrid_overlay.cpp.o
+[ 79%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/pair_hybrid_scaled.cpp.o
+[ 79%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/pair_lj_cut.cpp.o
+[ 79%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/pair_lj_cut_coul_cut.cpp.o
+[ 79%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/pair_lj_expand.cpp.o
+[ 80%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/pair_morse.cpp.o
+[ 80%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/pair_soft.cpp.o
+[ 80%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/pair_table.cpp.o
+[ 80%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/pair_yukawa.cpp.o
+[ 81%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/pair_zbl.cpp.o
+[ 81%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/pair_zero.cpp.o
+[ 81%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/platform.cpp.o
+[ 81%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/potential_file_reader.cpp.o
+[ 81%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/procmap.cpp.o
+[ 82%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/random_mars.cpp.o
+[ 82%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/random_park.cpp.o
+[ 82%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/rcb.cpp.o
+[ 82%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/read_data.cpp.o
+[ 82%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/read_dump.cpp.o
+[ 83%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/read_restart.cpp.o
+[ 83%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/reader.cpp.o
+[ 83%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/reader_native.cpp.o
+[ 83%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/reader_xyz.cpp.o
+[ 84%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/region.cpp.o
+[ 84%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/region_block.cpp.o
+[ 84%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/region_cone.cpp.o
+[ 84%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/region_cylinder.cpp.o
+[ 84%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/region_deprecated.cpp.o
+[ 85%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/region_intersect.cpp.o
+[ 85%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/region_plane.cpp.o
+[ 85%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/region_prism.cpp.o
+[ 85%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/region_sphere.cpp.o
+[ 85%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/region_union.cpp.o
+[ 86%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/replicate.cpp.o
+[ 86%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/rerun.cpp.o
+[ 86%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/reset_atom_ids.cpp.o
+[ 86%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/reset_mol_ids.cpp.o
+[ 86%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/respa.cpp.o
+[ 87%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/run.cpp.o
+[ 87%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/set.cpp.o
+[ 87%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/special.cpp.o
+[ 87%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/table_file_reader.cpp.o
+[ 88%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/tabular_function.cpp.o
+[ 88%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/text_file_reader.cpp.o
+[ 88%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/thermo.cpp.o
+[ 88%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/timer.cpp.o
+[ 88%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/tokenizer.cpp.o
+[ 89%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/universe.cpp.o
+[ 89%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/update.cpp.o
+[ 89%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/utils.cpp.o
+[ 89%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/variable.cpp.o
+[ 89%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/velocity.cpp.o
+[ 90%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/verlet.cpp.o
+[ 90%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/write_coeff.cpp.o
+[ 90%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/write_data.cpp.o
+[ 90%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/write_dump.cpp.o
+[ 91%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/write_restart.cpp.o
+[ 91%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/ML-SNAP/compute_sna_atom.cpp.o
+[ 91%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/ML-SNAP/compute_snad_atom.cpp.o
+[ 91%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/ML-SNAP/compute_snap.cpp.o
+[ 91%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/ML-SNAP/compute_snav_atom.cpp.o
+[ 92%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/ML-SNAP/pair_snap.cpp.o
+[ 92%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/ML-SNAP/sna.cpp.o
+[ 92%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/angle_charmm.cpp.o
+[ 92%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/angle_cosine.cpp.o
+[ 92%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/angle_cosine_squared.cpp.o
+[ 93%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/angle_harmonic.cpp.o
+[ 93%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/angle_table.cpp.o
+[ 93%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/atom_vec_angle.cpp.o
+[ 93%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/atom_vec_bond.cpp.o
+[ 94%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/atom_vec_full.cpp.o
+[ 94%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/atom_vec_molecular.cpp.o
+[ 94%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/atom_vec_template.cpp.o
+[ 94%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/bond_fene.cpp.o
+[ 94%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/bond_fene_expand.cpp.o
+[ 95%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/bond_gromos.cpp.o
+[ 95%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/bond_harmonic.cpp.o
+[ 95%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/bond_morse.cpp.o
+[ 95%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/bond_quartic.cpp.o
+[ 95%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/bond_table.cpp.o
+[ 96%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/dihedral_charmm.cpp.o
+[ 96%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/dihedral_charmmfsw.cpp.o
+[ 96%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/dihedral_harmonic.cpp.o
+[ 96%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/dihedral_multi_harmonic.cpp.o
+[ 96%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/dihedral_opls.cpp.o
+[ 97%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/dihedral_table.cpp.o
+[ 97%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/fix_cmap.cpp.o
+[ 97%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/improper_cvff.cpp.o
+[ 97%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/improper_harmonic.cpp.o
+[ 98%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/improper_umbrella.cpp.o
+[ 98%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/pair_hbond_dreiding_lj.cpp.o
+[ 98%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/pair_hbond_dreiding_morse.cpp.o
+[ 98%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/pair_lj_charmm_coul_charmm.cpp.o
+[ 98%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/pair_lj_charmm_coul_charmm_implicit.cpp.o
+[100%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/pair_lj_charmmfsw_coul_charmmfsh.cpp.o
+[100%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/pair_lj_cut_tip4p_cut.cpp.o
+[100%] Building CXX object CMakeFiles/lammps.dir/Users/aedumi/software/lammps/src/MOLECULE/pair_tip4p_cut.cpp.o
+[100%] Linking CXX shared library liblammps.dylib
+[100%] Built target lammps
+[100%] Building CXX object CMakeFiles/lmp.dir/Users/aedumi/software/lammps/src/main.cpp.o
+[100%] Linking CXX executable lmp
+[100%] Built target lmp

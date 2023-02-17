@@ -14,6 +14,7 @@
 
 #include "compute_snav_atom.h"
 #include <cstring>
+#include <iostream>
 
 #include "sna.h"
 #include "atom.h"
@@ -33,6 +34,7 @@ ComputeSNAVAtom::ComputeSNAVAtom(LAMMPS *lmp, int narg, char **arg) :
   Compute(lmp, narg, arg), cutsq(nullptr), list(nullptr), snav(nullptr),
   radelem(nullptr), wjelem(nullptr)
 {
+  std::cout << "ENTERING computesava atom" << "\n";
   double rfac0, rmin0;
   int twojmax, switchflag, bzeroflag, bnormflag, wselfallflag;
   radelem = nullptr;
@@ -72,9 +74,13 @@ ComputeSNAVAtom::ComputeSNAVAtom(LAMMPS *lmp, int narg, char **arg) :
   for (int i = 1; i <= ntypes; i++) {
     cut = 2.0*radelem[i]*rcutfac;
     cutsq[i][i] = cut*cut;
+    std::cout << i << "," << i << " " << cutsq[i][i] <<std::endl;
     for (int j = i+1; j <= ntypes; j++) {
       cut = (radelem[i]+radelem[j])*rcutfac;
       cutsq[i][j] = cutsq[j][i] = cut*cut;
+      std::cout << i << "," << j << " "  <<  cutsq[i][i] << std::endl;
+
+
     }
   }
 

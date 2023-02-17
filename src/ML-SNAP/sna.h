@@ -74,7 +74,7 @@ class SNA : protected Pointers {
   double *ylist_r, *ylist_i;
   int idxcg_max, idxu_max, idxz_max, idxb_max;
 
- private:
+//  private:
   double rmin0, rfac0;
 
   // data for bispectrum coefficients

@@ -28,6 +28,8 @@
 #include "memory.h"
 #include "error.h"
 
+#include <iostream>
+
 using namespace LAMMPS_NS;
 
 ComputeSNADAtom::ComputeSNADAtom(LAMMPS *lmp, int narg, char **arg) :

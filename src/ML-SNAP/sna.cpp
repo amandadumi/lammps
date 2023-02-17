@@ -23,6 +23,7 @@
 #include "memory.h"
 #include "error.h"
 #include "comm.h"
+#include <iostream>
 
 using namespace std;
 using namespace LAMMPS_NS;
@@ -191,13 +192,17 @@ void SNA::build_indexlist()
   for (int j1 = 0; j1 <= twojmax; j1++)
     for (int j2 = 0; j2 <= j1; j2++)
       for (int j = j1 - j2; j <= MIN(twojmax, j1 + j2); j += 2) {
+        // std::cout << j1 << j2 <<j << " "<<idxcg_count<<std::endl;
         idxcg_block[j1][j2][j] = idxcg_count;
         for (int m1 = 0; m1 <= j1; m1++)
           for (int m2 = 0; m2 <= j2; m2++)
             idxcg_count++;
       }
-  idxcg_max = idxcg_count;
 
+
+
+  idxcg_max = idxcg_count;
+  // std::cout << "idxcg_max " << idxcg_max <<std::endl;
   // index list for uarray
   // need to include both halves
 
@@ -208,12 +213,15 @@ void SNA::build_indexlist()
 
   for (int j = 0; j <= twojmax; j++) {
     idxu_block[j] = idxu_count;
+    // std::cout << "idxublock " << idxu_count <<"\n";
     for (int mb = 0; mb <= j; mb++)
       for (int ma = 0; ma <= j; ma++)
         idxu_count++;
+
+
   }
   idxu_max = idxu_count;
-
+  std::cout << "idxumax " << idxu_max <<"\n";
   // index list for beta and B
 
   int idxb_count = 0;
@@ -223,6 +231,7 @@ void SNA::build_indexlist()
         if (j >= j1) idxb_count++;
 
   idxb_max = idxb_count;
+  // std:: cout << "idxbmax is " << idxb_max << "n";
   idxb = new SNA_BINDICES[idxb_max];
 
   idxb_count = 0;
@@ -247,6 +256,7 @@ void SNA::build_indexlist()
         if (j >= j1) {
           idxb_block[j1][j2][j] = idxb_count;
           idxb_count++;
+          // std::cout <<"j1"<< j1<<"j2"<<j2 << "j"<< j << " idxb_block: " << idxb_block[j1][j2][j] << std::endl;
         }
       }
 
@@ -262,6 +272,7 @@ void SNA::build_indexlist()
             idxz_count++;
 
   idxz_max = idxz_count;
+  // std::cout << "idxzmax is " << idxz_max << "\n";
   idxz = new SNA_ZINDICES[idxz_max];
 
   memory->create(idxz_block, jdim, jdim, jdim,
@@ -269,7 +280,8 @@ void SNA::build_indexlist()
 
   idxz_count = 0;
   for (int j1 = 0; j1 <= twojmax; j1++)
-    for (int j2 = 0; j2 <= j1; j2++)
+    for (int j2 = 0; j2 <= j1; j2++){
+
       for (int j = j1 - j2; j <= MIN(twojmax, j1 + j2); j += 2) {
         idxz_block[j1][j2][j] = idxz_count;
 
@@ -289,13 +301,13 @@ void SNA::build_indexlist()
             idxz[idxz_count].mb2max = (2 * mb - j - (2 * idxz[idxz_count].mb1min - j1) + j2) / 2;
             idxz[idxz_count].nb = MIN(j1, (2 * mb - j + j2 + j1) / 2) - idxz[idxz_count].mb1min + 1;
             // apply to z(j1,j2,j,ma,mb) to unique element of y(j)
-
             const int jju = idxu_block[j] + (j+1)*mb + ma;
             idxz[idxz_count].jju = jju;
 
             idxz_count++;
           }
       }
+    }
 }
 
 /* ---------------------------------------------------------------------- */
@@ -345,7 +357,6 @@ void SNA::compute_ui(int jnum, int ielem)
   //   utot(j,ma,mb) += u(r0;j,ma,mb) for all j,ma,mb
 
   zero_uarraytot(ielem);
-
   for (int j = 0; j < jnum; j++) {
     x = rij[j][0];
     y = rij[j][1];
@@ -356,6 +367,7 @@ void SNA::compute_ui(int jnum, int ielem)
     theta0 = (r - rmin0) * rfac0 * MY_PI / (rcutij[j] - rmin0);
     //    theta0 = (r - rmin0) * rscale0;
     z0 = r / tan(theta0);
+    // std::cout <<"x "<< x<<" y "<<y<<" z " <<z<<" r " <<r<<" theta0 "<<theta0<<" z0 "<<z0<<std::endl;
 
     compute_uarray(x, y, z, z0, r, j);
     if (chem_flag)
@@ -363,6 +375,10 @@ void SNA::compute_ui(int jnum, int ielem)
     else
       add_uarraytot(r, wj[j], rcutij[j], j, 0);
   }
+  // std::cout << "ulistot_i is " <<std::endl;
+  // for (int i = 0; i < idxu_max*nelements; ++i){
+  //   std::cout << ulisttot_i[i] << " " ;
+  // }
 
 }
 
@@ -392,6 +408,7 @@ void SNA::compute_zi()
         const int mb1min = idxz[jjz].mb1min;
         const int mb2max = idxz[jjz].mb2max;
         const int nb = idxz[jjz].nb;
+        // std::cout << j1<< " "<< j2<< " "<< j<<" " <<ma1min<<" " <<ma2max<<" " <<na<<" " <<mb1min<<" " <<mb2max<<std::endl;
 
         const double *cgblock = cglist + idxcg_block[j1][j2][j];
 
@@ -401,8 +418,9 @@ void SNA::compute_zi()
         int jju1 = idxu_block[j1] + (j1 + 1) * mb1min;
         int jju2 = idxu_block[j2] + (j2 + 1) * mb2max;
         int icgb = mb1min * (j2 + 1) + mb2max;
-        for (int ib = 0; ib < nb; ib++) {
+        // std::cout << jju1<< " "<<jju2<< " "<<icgb<<std::endl;
 
+        for (int ib = 0; ib < nb; ib++) {
           double suma1_r = 0.0;
           double suma1_i = 0.0;
 
@@ -414,15 +432,17 @@ void SNA::compute_zi()
           int ma1 = ma1min;
           int ma2 = ma2max;
           int icga = ma1min * (j2 + 1) + ma2max;
-
+          // std::cout << icga <<std::endl;
           for (int ia = 0; ia < na; ia++) {
+            // std::cout<< cgblock[icga]<<std::endl;
+            // std::cout<< u1_r[ma1] << " "<< u2_r[ma2] <<" " << u1_i[ma1] <<" "<< u2_i[ma2]<<std::endl;
             suma1_r += cgblock[icga] * (u1_r[ma1] * u2_r[ma2] - u1_i[ma1] * u2_i[ma2]);
             suma1_i += cgblock[icga] * (u1_r[ma1] * u2_i[ma2] + u1_i[ma1] * u2_r[ma2]);
             ma1++;
             ma2--;
             icga += j2;
           } // end loop over ia
-
+          // std::cout<< "sum_a1_i is " << suma1_i << std::endl;
           zptr_r[jjz] += cgblock[icgb] * suma1_r;
           zptr_i[jjz] += cgblock[icgb] * suma1_i;
 
@@ -437,6 +457,15 @@ void SNA::compute_zi()
       } // end loop over jjz
       idouble++;
     }
+// std::cout << "zlist r is "<<std::endl;
+// for (int i = 0 ; i <idxz_max*ndoubles; i ++){
+//   std::cout << zlist_r[i]  << " " ;
+//   }
+//   std::cout <<std::endl;
+  // std::cout << "zlist i is "<<std::endl;
+  // for (int i = 0 ; i <idxz_max*ndoubles; i ++){
+  //   std::cout << zlist_i[i] << " ";
+  //   }
 }
 
 /* ----------------------------------------------------------------------
@@ -445,6 +474,7 @@ void SNA::compute_zi()
 
 void SNA::compute_yi(const double* beta)
 {
+  // std::cout << "computing yi"<< std::endl;
   int jju;
   double betaj;
   int itriple;
@@ -463,7 +493,9 @@ void SNA::compute_yi(const double* beta)
   for (int elem1 = 0; elem1 < nelements; elem1++)
     for (int elem2 = 0; elem2 < nelements; elem2++) {
         for (int jjz = 0; jjz < idxz_max; jjz++) {
+          // std::cout << "elem1 " <<elem1<<"elem2 "<<elem2<<"jjz "<<jjz<<std::endl;
           const int j1 = idxz[jjz].j1;
+          // std::cout<<" j1 is "<<j1<<std::endl;
           const int j2 = idxz[jjz].j2;
           const int j = idxz[jjz].j;
           const int ma1min = idxz[jjz].ma1min;
@@ -472,38 +504,60 @@ void SNA::compute_yi(const double* beta)
           const int mb1min = idxz[jjz].mb1min;
           const int mb2max = idxz[jjz].mb2max;
           const int nb = idxz[jjz].nb;
+          // std::cout<<" nb is "<<nb<<std::endl;
 
           const double *cgblock = cglist + idxcg_block[j1][j2][j];
-
+          // std::cout << "idxcgblock is " << idxcg_block[j1][j1][j] << std::endl;
+          // std::cout <<"cglist"<< *cglist <<std::endl;
           double ztmp_r = 0.0;
           double ztmp_i = 0.0;
 
           int jju1 = idxu_block[j1] + (j1 + 1) * mb1min;
-          int jju2 = idxu_block[j2] + (j2 + 1) * mb2max;
-          int icgb = mb1min * (j2 + 1) + mb2max;
-          for (int ib = 0; ib < nb; ib++) {
+          // std::cout <<"idxublock value"<< idxu_block[j1]  << "+"<< (j1+1) << "*" << mb1min<< " "<<jju1 <<std::endl;
 
+          int jju2 = idxu_block[j2] + (j2 + 1) + mb2max;
+          // std::cout <<"idxublock value"<< idxu_block[j2]  << "+"<< (j2+1) << "+" << mb2max <<" " << jju2<<std::endl;
+
+          int icgb = mb1min * (j2 + 1) + mb2max;
+          // std::cout<< "starting the sum! " << std::endl;
+          for (int ib = 0; ib < nb; ib++) {
+            // std::cout << "e1 " << elem1 << " e2 " << elem2 << " jjz " << jjz << " ib " << ib << std::endl;
             double suma1_r = 0.0;
             double suma1_i = 0.0;
 
             const double *u1_r = &ulisttot_r[elem1*idxu_max+jju1];
+            // std::cout << "index for u1 is " << elem1*idxu_max+jju1<<std::endl;
+            // std::cout << "index for u1 is " << elem1<< "*"<<idxu_max<<"+"<<jju1<<std::endl;
+            // std::cout << "u1_r value " <<  *u1_r <<std::endl;
             const double *u1_i = &ulisttot_i[elem1*idxu_max+jju1];
             const double *u2_r = &ulisttot_r[elem2*idxu_max+jju2];
+            // std::cout << "index for u2 is " << elem2<< "*"<<idxu_max<<"+"<<jju2<<std::endl;
+
             const double *u2_i = &ulisttot_i[elem2*idxu_max+jju2];
 
             int ma1 = ma1min;
             int ma2 = ma2max;
             int icga = ma1min * (j2 + 1) + ma2max;
+            // std::cout << "mas is  "<<ma1min << " " << ma2max<<  std::endl;
 
             for (int ia = 0; ia < na; ia++) {
+              // std::cout << ia<<std::endl;
+
+              // std::cout << "cgblock val and icga "<<icga<< " is "<<cgblock[icga] << std::endl;
+              // std::cout << "ulisttot_r is "<< u1_r[ma1]<<std::endl;
+              // std::cout << "ma1 is is "<< ma1<<std::endl;
               suma1_r += cgblock[icga] * (u1_r[ma1] * u2_r[ma2] - u1_i[ma1] * u2_i[ma2]);
+              // std::cout << "ulist enteries are " << u1_r[ma1] << " "<<u2_r[ma2] << " " << u1_i[ma1] <<" "<< u2_i[ma2]<<std::endl;
               suma1_i += cgblock[icga] * (u1_r[ma1] * u2_i[ma2] + u1_i[ma1] * u2_r[ma2]);
               ma1++;
               ma2--;
               icga += j2;
+              // std::cout << "intermediate " << suma1_r << std::endl;
+
             } // end loop over ia
 
-
+            // std::cout << "suma1_r is " << suma1_r << std::endl;
+            // std::cout << "cgblock is " << cgblock[icgb] << std::endl;
             ztmp_r += cgblock[icgb] * suma1_r;
             ztmp_i += cgblock[icgb] * suma1_i;
 
@@ -528,6 +582,9 @@ void SNA::compute_yi(const double* beta)
           if (j >= j1) {
             const int jjb = idxb_block[j1][j2][j];
             itriple = ((elem1 * nelements + elem2) * nelements + elem3) * idxb_max + jjb;
+            // std::cout << "elem2 " <<elem2 << " nelements " << nelements <<" elem1 " <<elem1 <<" idxb_max " << idxb_max << " jjb " <<jjb <<std::endl;
+
+            // std::cout<< "itriple is " << itriple << std::endl;
             if (j1 == j) {
               if (j2 == j) betaj = 3*beta[itriple];
               else betaj = 2*beta[itriple];
@@ -539,7 +596,10 @@ void SNA::compute_yi(const double* beta)
             else betaj = beta[itriple];
           } else {
             const int jjb = idxb_block[j2][j][j1];
+            // std::cout <<j2 <<" "<< j << " " << j1 << " " << jjb <<std::endl;
             itriple = ((elem2 * nelements + elem3) * nelements + elem1) * idxb_max + jjb;
+            // std::cout <<"itriple is " <<itriple <<std::endl;
+            // std::cout <<"itriple is " <<elem2 <<" "<< nelements << " " << elem3 << " " << elem1 <<" " << idxb_max << " " <<jjb <<std::endl;
             betaj = beta[itriple];
           }
 
@@ -979,6 +1039,7 @@ void SNA::zero_uarraytot(int ielem)
   for (int jelem = 0; jelem < nelements; jelem++)
   for (int j = 0; j <= twojmax; j++) {
     int jju = idxu_block[j];
+    //std::cout << "the value of jju in compute_ui is " << jju << std::endl;
     for (int mb = 0; mb <= j; mb++) {
       for (int ma = 0; ma <= j; ma++) {
         ulisttot_r[jelem*idxu_max+jju] = 0.0;
@@ -986,12 +1047,15 @@ void SNA::zero_uarraytot(int ielem)
 
         // utot(j,ma,ma) = wself, sometimes
         if (jelem == ielem || wselfall_flag)
+          // std::cout << "we are in this wselfall_flag area"<< std::endl;
           if (ma==mb)
-          ulisttot_r[jelem*idxu_max+jju] = wself; ///// double check this
+            ulisttot_r[jelem*idxu_max+jju] = wself; ///// double check this
+          //std::cout <<  ulisttot_r[jelem*idxu_max+jju];
         jju++;
       }
     }
   }
+  //std::cout << std::endl;
 }
 
 /* ----------------------------------------------------------------------
@@ -1000,35 +1064,48 @@ void SNA::zero_uarraytot(int ielem)
 
 void SNA::add_uarraytot(double r, double wj, double rcut, int jj, int jelem)
 {
+
   double sfac;
 
   sfac = compute_sfac(r, rcut);
 
   sfac *= wj;
-
+  // std::cout << "sfac is " << sfac << std::endl;
   double* ulist_r = ulist_r_ij[jj];
   double* ulist_i = ulist_i_ij[jj];
-
+  // std::cout << "ulist_r "<< std::endl;
   for (int j = 0; j <= twojmax; j++) {
     int jju = idxu_block[j];
     for (int mb = 0; mb <= j; mb++)
       for (int ma = 0; ma <= j; ma++) {
+        // std::cout << " " << ulist_r[jju] << std::endl;
+        // std::cout << jelem*idxu_max+jju << std::endl;
         ulisttot_r[jelem*idxu_max+jju] +=
           sfac * ulist_r[jju];
         ulisttot_i[jelem*idxu_max+jju] +=
           sfac * ulist_i[jju];
         jju++;
+        // std::cout << " " << ulist_r[jju] << std::endl;
+        // std::cout << "jj " << jj <<" jju" << jju<<std::endl;
+
       }
   }
+
+  // std::cout<<std::endl;
+  // std::cout << "ulistot_r is " <<std::endl;
+  // for (int i = 0; i < idxu_max*nelements; ++i){
+  //   std::cout << ulisttot_r[i] << " " ;
+  // }
+  // std::cout<<std::endl;
 }
 
 /* ----------------------------------------------------------------------
    compute Wigner U-functions for one neighbor
 ------------------------------------------------------------------------- */
 
-void SNA::compute_uarray(double x, double y, double z,
-                         double z0, double r, int jj)
+void SNA::compute_uarray(double x, double y, double z, double z0, double r, int jj)
 {
+  // std::cout<< "accessing uarray function" << std::endl;
   double r0inv;
   double a_r, b_r, a_i, b_i;
   double rootpq;
@@ -1040,7 +1117,8 @@ void SNA::compute_uarray(double x, double y, double z,
   a_i = -r0inv * z;
   b_r = r0inv * y;
   b_i = -r0inv * x;
-
+  // std::cout<< "weird ar things:" <<std::endl;
+  // std::cout << "a_r " << a_r <<" a_i " << a_i <<" b_r "<< b_r <<" b_i"<<b_i << std::endl;
   // VMK Section 4.8.2
 
 
@@ -1051,12 +1129,17 @@ void SNA::compute_uarray(double x, double y, double z,
   ulist_i[0] = 0.0;
 
   for (int j = 1; j <= twojmax; j++) {
+
     int jju = idxu_block[j];
+    // std::cout<< "jju is " << jju <<std::endl;
     int jjup = idxu_block[j-1];
+    // std::cout<< "jjup is " << jjup <<std::endl;
 
     // fill in left side of matrix layer from previous layer
 
     for (int mb = 0; 2*mb <= j; mb++) {
+      // std::cout << "jju is " << jju << " !!"<<std::endl;
+      // std::cout << "jjup is " << jjup << " !!"<<std::endl;
       ulist_r[jju] = 0.0;
       ulist_i[jju] = 0.0;
 
@@ -1066,20 +1149,35 @@ void SNA::compute_uarray(double x, double y, double z,
           rootpq *
           (a_r * ulist_r[jjup] +
            a_i * ulist_i[jjup]);
+         // std::cout << "first term is " << a_r * ulist_r[jjup] << std::endl;
+         // std::cout << "second term is " << a_i * ulist_i[jjup] << std::endl;
+         // std::cout << "rootpq is " << rootpq << std::endl;
+         // std::cout << "ulist_r of jjup " << ulist_r[jjup] <<std::endl;
+         // std::cout << "ulist_i of jjup " << ulist_i[jjup] <<std::endl<<std::endl;
+         // std::cout << "ulist_rij at jj " << jj << " and jju " <<jju << " is " << ulist_r[jju] <<std::endl<<std::endl;
         ulist_i[jju] +=
           rootpq *
           (a_r * ulist_i[jjup] -
            a_i * ulist_r[jjup]);
-
+           // std::cout << "first term is " << a_r * ulist_i[jjup] << std::endl;
+           // std::cout << "second term is " << a_i * ulist_r[jjup] << std::endl;
+           // std::cout << "ulist_i_ij at jj " << jj << " and jju " <<jju << " is " << ulist_i[jju] <<std::endl;
         rootpq = rootpqarray[ma + 1][j - mb];
         ulist_r[jju+1] =
           -rootpq *
           (b_r * ulist_r[jjup] +
            b_i * ulist_i[jjup]);
+           // std::cout << "rootpq is " << rootpq << std::endl;
+           // std::cout << "first term is " << b_r * ulist_r[jjup] << std::endl;
+           // std::cout << "second term is " << b_i * ulist_i[jjup] << std::endl;
+           // std::cout << "ulist_r_ij at jj " << jj << " and jju (+1) " << jju << " is " << ulist_r[jju+1] <<std::endl;
         ulist_i[jju+1] =
           -rootpq *
           (b_r * ulist_i[jjup] -
            b_i * ulist_r[jjup]);
+           // std::cout << "first term is " << b_r * ulist_i[jjup] << std::endl;
+           // std::cout << "second term is " << b_i * ulist_r[jjup] << std::endl;
+           // std::cout << "ulist_r_rij at jj " << jj << " and jju (+1) " << jju << " is " << ulist_i[jju+1] <<std::endl;
         jju++;
         jjup++;
       }
@@ -1091,10 +1189,12 @@ void SNA::compute_uarray(double x, double y, double z,
 
     jju = idxu_block[j];
     jjup = jju+(j+1)*(j+1)-1;
+    // std::cout << "jjup is " <<jjup << std::endl;
     int mbpar = 1;
     for (int mb = 0; 2*mb <= j; mb++) {
       int mapar = mbpar;
       for (int ma = 0; ma <= j; ma++) {
+        // std::cout << "for ma " << ma << "  mapar is " << mapar <<std::endl;
         if (mapar == 1) {
           ulist_r[jjup] = ulist_r[jju];
           ulist_i[jjup] = -ulist_i[jju];
@@ -1109,11 +1209,26 @@ void SNA::compute_uarray(double x, double y, double z,
       mbpar = -mbpar;
     }
   }
+  // std::cout << "ulist_i_ij" <<std::endl;
+  // for (int i = 0; i <nmax; i++){
+  //   for (int j = 0;j< idxu_max;j++){
+  //     std::cout << ulist_i_ij[i][j] << " ";
+  //   }
+  //   std::cout << std::endl <<std::endl;
+  // }
+  //
+  // std::cout << "ulist_r_ij" <<std::endl;
+  // for (int i = 0; i <nmax; i++){
+  //   for (int j = 0;j< idxu_max;j++){
+  //     std::cout << ulist_i_ij[i][j] << " ";
+  //   }
+  //   std::cout << std::endl<< std::endl;
+  // }
 }
 
 /* ----------------------------------------------------------------------
    Compute derivatives of Wigner U-functions for one neighbor
-   see comments in compute_uarray()
+   see comments in ()
 ------------------------------------------------------------------------- */
 
 void SNA::compute_duarray(double x, double y, double z,
@@ -1416,7 +1531,9 @@ void SNA::init_clebsch_gordan()
                  z <= MIN((j1 + j2 - j) / 2,
                           MIN((j1 - aa2) / 2, (j2 + bb2) / 2));
                  z++) {
+                   // std::cout<< "z is " <<z<<std::endl;
               ifac = z % 2 ? -1 : 1;
+              // std::cout<< "ifac is " <<ifac<<std::endl;
               sum += ifac /
                 (factorial(z) *
                  factorial((j1 + j2 - j) / 2 - z) *
@@ -1435,12 +1552,18 @@ void SNA::init_clebsch_gordan()
                           factorial((j  + cc2) / 2) *
                           factorial((j  - cc2) / 2) *
                           (j + 1));
-
+            // std::cout<< "cg initialize parts"<<std::endl;
+            // std::cout << sum << " "<< dcg <<" "<<sfaccg <<std::endl;
             cglist[idxcg_count] = sum * dcg * sfaccg;
             idxcg_count++;
           }
         }
       }
+// for (int i = 0 ; i <= idxcg_max; i++){
+//   std::cout <<cglist[i] << " " ;
+//   }
+// std::cout <<std::endl;
+
 }
 
 /* ----------------------------------------------------------------------
@@ -1485,8 +1608,9 @@ void SNA::print_clebsch_gordan()
 void SNA::init_rootpqarray()
 {
   for (int p = 1; p <= twojmax; p++)
-    for (int q = 1; q <= twojmax; q++)
+    for (int q = 1; q <= twojmax; q++){
       rootpqarray[p][q] = sqrt(static_cast<double>(p)/q);
+    }
 }
 
 /* ---------------------------------------------------------------------- */
@@ -1542,4 +1666,3 @@ double SNA::compute_dsfac(double r, double rcut)
   }
   return 0.0;
 }
-
